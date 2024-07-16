@@ -77,3 +77,12 @@ window.customCards = window.customCards || [];
 
 // Add your card to the customCards array
 window.customCards.push(FootballLineupCardDescriptor);
+
+
+
+customElements.define('rotating-helper-card-editor', RotatingHelperCardEditor);
+
+
+
+
+
