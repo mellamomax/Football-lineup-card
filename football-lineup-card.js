@@ -14,7 +14,7 @@ const FORMATIONS = {
     "4-2-3-1": [
         { x: 1, y: 2.5 }, // Goalkeeper
         { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
-        { x: 3, y: 2 }, { x: 3, y: 3 }, // Defensive Midfielders
+        { x: 3, y: 1.8 }, { x: 3, y: 3.2 }, // Defensive Midfielders
         { x: 4, y: 1 }, { x: 4, y: 2.5 }, { x: 4, y: 4 }, // Attacking Midfielders
         { x: 5, y: 2.5 }, // Forward
     ],
@@ -75,7 +75,7 @@ class FootballLineupCard extends HTMLElement {
             <style>
                 .card {
                     padding: 16px;
-                    font-size: 20px;
+                    font-size: 12px;
                     position: relative;
                 }
                 .field {
