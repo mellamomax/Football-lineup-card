@@ -13,28 +13,33 @@ class FootballLineupCard extends HTMLElement {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
                     background-size: cover;
                     width: 100%;
-                    height: 400px;
-                }
-                .players {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    padding: 10px;
+                    height: 600px; /* Adjusted height to fit more players */
+                    position: relative;
                 }
                 .player {
-                    margin: 5px;
+                    position: absolute;
                     text-align: center;
-                }
-                .player img {
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 5px;
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
+                    line-height: 50px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    transform: translate(-50%, -50%); /* Center the player icon */
+                }
+                .player img {
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
                 }
             </style>
             <div class="card">
                 <div class="field"></div>
-                <div class="hello-world">Hello World</div>
-                <div class="players"></div>
             </div>
         `;
     }
@@ -42,24 +47,31 @@ class FootballLineupCard extends HTMLElement {
     set hass(hass) {
         const entity = hass.states[this.config.entity];
         if (!entity) {
-            this.shadowRoot.querySelector('.hello-world').innerHTML = 'Entity not found';
+            this.shadowRoot.querySelector('.card').innerHTML = 'Entity not found';
             return;
         }
         const attributes = entity.attributes;
+        const formation = attributes.formation.split('-').map(Number);
         const startingXI = attributes["starting XI"];
 
-        const playersContainer = this.shadowRoot.querySelector('.players');
-        playersContainer.innerHTML = '';
+        const field = this.shadowRoot.querySelector('.field');
+        field.innerHTML = '';
+
+        const rows = formation.length + 1; // Number of rows is number of lines + 1 for the goalkeeper
+        const maxCols = Math.max(...formation); // Maximum number of columns is the max value in formation array
 
         startingXI.forEach(playerInfo => {
             const player = playerInfo.player;
+            const [x, y] = player.grid.split(':').map(Number);
             const playerDiv = document.createElement('div');
             playerDiv.className = 'player';
+            playerDiv.style.left = `${(y / maxCols) * 100}%`; // Dynamic column calculation
+            playerDiv.style.top = `${(x / rows) * 100}%`;  // Dynamic row calculation
             playerDiv.innerHTML = `
                 <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${player.name}" />
                 <div>${player.name}</div>
             `;
-            playersContainer.appendChild(playerDiv);
+            field.appendChild(playerDiv);
         });
     }
 
