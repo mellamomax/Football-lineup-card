@@ -66,7 +66,6 @@ const FORMATIONS = {
     ]
 };
 
-
 class FootballLineupCard extends HTMLElement {
     setConfig(config) {
         this.config = config;
@@ -75,7 +74,7 @@ class FootballLineupCard extends HTMLElement {
             <style>
                 .card {
                     padding: 16px;
-                    font-size: 12px;
+                    font-size: 20px;
                     position: relative;
                 }
                 .field {
@@ -90,11 +89,10 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     color: white;
                     background-color: rgba(0, 0, 0, 0.5);
-                    padding: 5px;
+                    padding: 0;
                     border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
-                    line-height: 50px;
+                    width: 60px;
+                    height: 60px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -103,8 +101,14 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player img {
                     border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                }
+                .player div {
                     width: 100%;
-                    height: 100%;
+                    text-align: center;
+                    font-size: 10px;
+                    margin-top: 2px;
                 }
             </style>
             <div class="card">
@@ -140,9 +144,10 @@ class FootballLineupCard extends HTMLElement {
                 playerDiv.className = 'player';
                 playerDiv.style.left = `${(position.y / 5) * 100}%`; // Adjust for appropriate positioning
                 playerDiv.style.top = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
+                const surname = player.name.split(' ').slice(-1)[0];
                 playerDiv.innerHTML = `
-                    <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${player.name}" />
-                    <div>${player.name}</div>
+                    <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${surname}" />
+                    <div>${surname}</div>
                 `;
                 field.appendChild(playerDiv);
             }
