@@ -7,18 +7,27 @@ class FootballLineupCard extends HTMLElement {
                 .card {
                     padding: 16px;
                     font-size: 20px;
+                    position: relative;
                 }
                 .field {
-                    background: url('/local/football-pitch-template') no-repeat center center;
-                    background-size: contain;
+                    background: url('/local/football-pitch-template.jpg') no-repeat center center;
+                    background-size: cover;
                     width: 100%;
                     height: 400px;
-                    position: relative;
+                }
+                .hello-world {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 5px;
+                    border-radius: 3px;
                 }
             </style>
             <div class="card">
                 <div class="field"></div>
-                <div>Hello World</div>
+                <div class="hello-world">Hello World</div>
             </div>
         `;
     }
