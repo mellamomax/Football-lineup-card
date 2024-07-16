@@ -15,25 +15,56 @@ class FootballLineupCard extends HTMLElement {
                     width: 100%;
                     height: 400px;
                 }
-                .hello-world {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 10px;
-                    color: white;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    padding: 5px;
-                    border-radius: 3px;
+                .players {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    padding: 10px;
+                }
+                .player {
+                    margin: 5px;
+                    text-align: center;
+                }
+                .player img {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
                 }
             </style>
             <div class="card">
                 <div class="field"></div>
                 <div class="hello-world">Hello World</div>
+                <div class="players"></div>
             </div>
         `;
     }
 
+    set hass(hass) {
+        const entity = hass.states[this.config.entity];
+        if (!entity) {
+            this.shadowRoot.querySelector('.hello-world').innerHTML = 'Entity not found';
+            return;
+        }
+        const attributes = entity.attributes;
+        const startingXI = attributes["starting XI"];
+
+        const playersContainer = this.shadowRoot.querySelector('.players');
+        playersContainer.innerHTML = '';
+
+        startingXI.forEach(playerInfo => {
+            const player = playerInfo.player;
+            const playerDiv = document.createElement('div');
+            playerDiv.className = 'player';
+            playerDiv.innerHTML = `
+                <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${player.name}" />
+                <div>${player.name}</div>
+            `;
+            playersContainer.appendChild(playerDiv);
+        });
+    }
+
     getCardSize() {
-        return 1;
+        return 3;
     }
 }
 
