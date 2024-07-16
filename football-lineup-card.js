@@ -9,7 +9,7 @@ class FootballLineupCard extends HTMLElement {
                     font-size: 20px;
                 }
                 .field {
-                    background: url('/local/football-pitch-template.jpg') no-repeat center center;
+                    background: url('/local/football-pitch-template') no-repeat center center;
                     background-size: contain;
                     width: 100%;
                     height: 400px;
