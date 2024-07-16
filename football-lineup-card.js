@@ -1,3 +1,72 @@
+const FORMATIONS = {
+    "4-3-3": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 1 }, { x: 4, y: 2.5 }, { x: 4, y: 4 }, // Forwards
+    ],
+    "4-4-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "4-2-3-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 2 }, { x: 3, y: 3 }, // Defensive Midfielders
+        { x: 4, y: 1 }, { x: 4, y: 2.5 }, { x: 4, y: 4 }, // Attacking Midfielders
+        { x: 5, y: 2.5 }, // Forward
+    ],
+    "3-4-3": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1.5 }, { x: 2, y: 2.5 }, { x: 2, y: 3.5 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 1.5 }, { x: 4, y: 2.5 }, { x: 4, y: 3.5 }, // Forwards
+    ],
+    "3-5-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1.5 }, { x: 2, y: 2.5 }, { x: 2, y: 3.5 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 2.5 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "5-3-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 2.5 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "4-1-4-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 2.5 }, // Defensive Midfielder
+        { x: 4, y: 1 }, { x: 4, y: 1.5 }, { x: 4, y: 3.5 }, { x: 4, y: 4 }, // Midfielders
+        { x: 5, y: 2.5 }, // Forward
+    ],
+    "4-5-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 2.5 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2.5 }, // Forward
+    ],
+    "4-3-1-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 2.5 }, // Attacking Midfielder
+        { x: 5, y: 2 }, { x: 5, y: 3 }, // Forwards
+    ],
+    "4-1-2-1-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 2.5 }, // Defensive Midfielder
+        { x: 4, y: 1.5 }, { x: 4, y: 3.5 }, // Midfielders
+        { x: 5, y: 2.5 }, // Attacking Midfielder
+        { x: 6, y: 2 }, { x: 6, y: 3 }, // Forwards
+    ]
+};
+
+
 class FootballLineupCard extends HTMLElement {
     setConfig(config) {
         this.config = config;
@@ -51,27 +120,32 @@ class FootballLineupCard extends HTMLElement {
             return;
         }
         const attributes = entity.attributes;
-        const formation = attributes.formation.split('-').map(Number);
+        const formationType = attributes.formation;
         const startingXI = attributes["starting XI"];
+
+        const formationGrid = FORMATIONS[formationType];
+        if (!formationGrid) {
+            this.shadowRoot.querySelector('.card').innerHTML = 'Formation not supported';
+            return;
+        }
 
         const field = this.shadowRoot.querySelector('.field');
         field.innerHTML = '';
 
-        const rows = formation.length + 1; // Number of rows is number of lines + 1 for the goalkeeper
-        const maxCols = Math.max(...formation); // Maximum number of columns is the max value in formation array
-
-        startingXI.forEach(playerInfo => {
+        startingXI.forEach((playerInfo, index) => {
             const player = playerInfo.player;
-            const [x, y] = player.grid.split(':').map(Number);
-            const playerDiv = document.createElement('div');
-            playerDiv.className = 'player';
-            playerDiv.style.left = `${(y / maxCols) * 100}%`; // Dynamic column calculation
-            playerDiv.style.top = `${(x / rows) * 100}%`;  // Dynamic row calculation
-            playerDiv.innerHTML = `
-                <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${player.name}" />
-                <div>${player.name}</div>
-            `;
-            field.appendChild(playerDiv);
+            const position = formationGrid[index];
+            if (position) {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'player';
+                playerDiv.style.left = `${(position.y / 5) * 100}%`; // Adjust for appropriate positioning
+                playerDiv.style.top = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
+                playerDiv.innerHTML = `
+                    <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${player.name}" />
+                    <div>${player.name}</div>
+                `;
+                field.appendChild(playerDiv);
+            }
         });
     }
 
