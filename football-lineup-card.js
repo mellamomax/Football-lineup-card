@@ -89,7 +89,7 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     color: white;
                     background-color: rgba(255,255,255);
-                    padding: 5px;
+                    padding: 0px;
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
