@@ -15,7 +15,7 @@ class FootballLineupCard extends HTMLElement {
 
         const style = `
             .field {
-                background: url('/local/field.png') no-repeat center center;
+                background: url('/hacsfiles/football-lineup-card/img/football-pitch-template.jpg') no-repeat center center;
                 background-size: contain;
                 width: 100%;
                 height: 400px;
@@ -77,12 +77,3 @@ window.customCards = window.customCards || [];
 
 // Add your card to the customCards array
 window.customCards.push(FootballLineupCardDescriptor);
-
-
-
-customElements.define('rotating-helper-card-editor', RotatingHelperCardEditor);
-
-
-
-
-
