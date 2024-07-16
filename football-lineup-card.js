@@ -81,14 +81,14 @@ class FootballLineupCard extends HTMLElement {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
                     background-size: cover;
                     width: 100%;
-                    height: 600px;
+                    height: 350px;
                     position: relative;
                 }
                 .player {
                     position: absolute;
                     text-align: center;
                     color: white;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(255,255,255);
                     padding: 5px;
                     border-radius: 50%;
                     width: 50px;
@@ -143,7 +143,7 @@ class FootballLineupCard extends HTMLElement {
             if (position) {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player';
-                playerDiv.style.left = `${(position.y / 5) * 100}%`; // Adjust for appropriate positioning
+                playerDiv.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning
                 playerDiv.style.bottom = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
                 const surname = player.name.split(' ').slice(-1)[0];
                 playerDiv.innerHTML = `
