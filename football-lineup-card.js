@@ -82,7 +82,7 @@ class FootballLineupCard extends HTMLElement {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
                     background-size: contain;
                     width: 100%;
-                    height: 350px;
+                    height: 0px;
                     padding-bottom: 66.6%; /* Aspect ratio 3:2 */
                     position: relative;
                 }
@@ -109,7 +109,7 @@ class FootballLineupCard extends HTMLElement {
                 .player div {
                     width: 100%;
                     text-align: center;
-                    font-size: 10px;
+                    font-size: 20px;
                     margin-top: 2px;
                 }
             </style>
@@ -145,7 +145,7 @@ class FootballLineupCard extends HTMLElement {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player';
                 playerDiv.style.left = `${(position.y / 4) * 100}%`; // Adjust for appropriate positioning
-                playerDiv.style.top = `${(position.x / 4) * 100}%`;  // Adjust for appropriate positioning
+                playerDiv.style.top = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
                 const surname = player.name.split(' ').slice(-1)[0];
                 playerDiv.innerHTML = `
                     <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${surname}" />
