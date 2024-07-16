@@ -76,12 +76,14 @@ class FootballLineupCard extends HTMLElement {
                     padding: 16px;
                     font-size: 20px;
                     position: relative;
+                    font-family: var(--montserrat-font), sans-serif;
                 }
                 .field {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
-                    background-size: cover;
+                    background-size: contain;
                     width: 100%;
-                    height: 600px; /* Adjusted height to fit more players */
+                    height: 0;
+                    padding-bottom: 66.6%; /* Aspect ratio 3:2 */
                     position: relative;
                 }
                 .player {
@@ -89,10 +91,10 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     color: white;
                     background-color: rgba(0, 0, 0, 0.5);
-                    padding: 0;
+                    padding: 5px;
                     border-radius: 50%;
-                    width: 60px;
-                    height: 60px;
+                    width: 50px;
+                    height: 50px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -101,8 +103,8 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player img {
                     border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
+                    width: 100%;
+                    height: 100%;
                 }
                 .player div {
                     width: 100%;
@@ -142,8 +144,8 @@ class FootballLineupCard extends HTMLElement {
             if (position) {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player';
-                playerDiv.style.left = `${(position.y / 5) * 100}%`; // Adjust for appropriate positioning
-                playerDiv.style.top = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
+                playerDiv.style.left = `${(position.y / 4) * 100}%`; // Adjust for appropriate positioning
+                playerDiv.style.top = `${(position.x / 4) * 100}%`;  // Adjust for appropriate positioning
                 const surname = player.name.split(' ').slice(-1)[0];
                 playerDiv.innerHTML = `
                     <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${surname}" />
