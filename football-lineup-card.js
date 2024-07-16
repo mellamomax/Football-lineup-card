@@ -76,13 +76,12 @@ class FootballLineupCard extends HTMLElement {
                     padding: 16px;
                     font-size: 20px;
                     position: relative;
-                    font-family: var(--montserrat-font), sans-serif;
                 }
                 .field {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
-                    background-size: contain;
+                    background-size: cover;
                     width: 100%;
-                    height: 350px;
+                    height: 600px;
                     position: relative;
                 }
                 .player {
@@ -90,6 +89,7 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     color: white;
                     background-color: rgba(0, 0, 0, 0.5);
+                    padding: 5px;
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
@@ -101,14 +101,15 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player img {
                     border-radius: 50%;
-                    width: 100%;
-                    height: 100%;
+                    width: 50px;
+                    height: 50px;
                 }
                 .player div {
                     width: 100%;
                     text-align: center;
                     font-size: 12px;
                     margin-top: 2px;
+                    font-family: var(--montserrat-font), sans-serif;
                 }
             </style>
             <div class="card">
@@ -142,7 +143,7 @@ class FootballLineupCard extends HTMLElement {
             if (position) {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player';
-                playerDiv.style.left = `${(position.y / 4) * 100}%`; // Adjust for appropriate positioning
+                playerDiv.style.left = `${(position.y / 5) * 100}%`; // Adjust for appropriate positioning
                 playerDiv.style.bottom = `${(position.x / 5) * 100}%`;  // Adjust for appropriate positioning
                 const surname = player.name.split(' ').slice(-1)[0];
                 playerDiv.innerHTML = `
