@@ -77,15 +77,12 @@ class FootballLineupCard extends HTMLElement {
                     font-size: 20px;
                     position: relative;
                     font-family: var(--montserrat-font), sans-serif;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                 }
                 .field {
                     background: url('/local/football-pitch-template.jpg') no-repeat center center;
                     background-size: contain;
                     width: 100%;
-                    height: 0px;
+                    height: 350px;
                     position: relative;
                 }
                 .player {
