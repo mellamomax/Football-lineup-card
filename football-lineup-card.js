@@ -63,8 +63,7 @@ class FootballLineupCard extends HTMLElement {
 
 customElements.define('football-lineup-card', FootballLineupCard);
 
-
-// code to show the card in HA card-picker
+// Code to show the card in HA card-picker
 const FootballLineupCardDescriptor = {
     type: 'football-lineup-card', // Must match the type you use in your YAML configuration
     name: 'Football Lineup Card', // Friendly name for the card picker
@@ -78,4 +77,3 @@ window.customCards = window.customCards || [];
 
 // Add your card to the customCards array
 window.customCards.push(FootballLineupCardDescriptor);
-
