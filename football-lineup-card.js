@@ -84,31 +84,33 @@ class FootballLineupCard extends HTMLElement {
    		    padding-top: 66.66%; /* Aspect ratio 3:2 */
                     position: relative;
                 }
-                .player {
-                    position: absolute;
-                    text-align: center;
-                    color: white;
+		.player-container {
+ 		    position: absolute;
+   		    transform: translate(-50%, -50%); /* Center the container */
+  		    text-align: center;
+		}
+
+                .player-circle {
+                    position: relative;
                     background-color: rgba(255,255,255);
-                    padding: 0px;
-                    border-radius: 50%;
-    		    width: 6vw; /* Diameter of the circle */
-    		    height: 6vw; /* Diameter of the circle */
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    transform: translate(-50%, -50%); /* Center the player icon */
-                }
+    		    border-radius: 50%; /* Ensures the shape is a circle */
+    		    width: 4vw; /* Diameter of the circle */
+    		    height: 4vw; /* Diameter of the circle */
+    		    display: flex;
+   		    justify-content: center;
+    		    align-items: center;
+		}
                 .player img {
                     border-radius: 50%;
                     width: 100%;
                     height: 100%;
                 }
-                .player div {
+                .player-name {
                     width: 100%;
                     text-align: center;
                     font-size: 1.2vw;
-                    margin-top: 3vw;
+                    margin-top: 1.5vw;
+		    font-weight: 580;
                     font-family: var(--montserrat-font), sans-serif;
                 }
             </style>
@@ -137,22 +139,32 @@ class FootballLineupCard extends HTMLElement {
         const field = this.shadowRoot.querySelector('.field');
         field.innerHTML = '';
 
-        startingXI.forEach((playerInfo, index) => {
-            const player = playerInfo.player;
-            const position = formationGrid[index];
-            if (position) {
-                const playerDiv = document.createElement('div');
-                playerDiv.className = 'player';
-                playerDiv.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning
-        	playerDiv.style.bottom = `${((position.x / 5) * 100) - 25}%`;  // Adjust for appropriate positioning and move down
-                const surname = player.name.split(' ').slice(-1)[0];
-                playerDiv.innerHTML = `
-                    <img src="https://media.api-sports.io/football/players/${player.id}.png" alt="${surname}" />
-                    <div>${surname}</div>
-                `;
-                field.appendChild(playerDiv);
-            }
-        });
+	startingXI.forEach((playerInfo, index) => {
+ 	    const player = playerInfo.player;
+ 	    const position = formationGrid[index];
+ 	    if (position) {
+  	        const playerContainer = document.createElement('div');
+  	        playerContainer.className = 'player-container';
+   	        playerContainer.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning and flip horizontally
+   	        playerContainer.style.bottom = `${((position.x / 5) * 100) - 5}%`;  // Adjust for appropriate positioning and move down
+
+   	        const playerCircle = document.createElement('div');
+   	        playerCircle.className = 'player-circle';
+
+    	        const playerImage = document.createElement('img');
+   	        playerImage.src = `https://media.api-sports.io/football/players/${player.id}.png`;
+    	        playerImage.alt = player.name.split(' ').slice(-1)[0];
+
+    	        const playerName = document.createElement('div');
+    	        playerName.className = 'player-name';
+    	        playerName.textContent = player.name.split(' ').slice(-1)[0];
+
+   	        playerCircle.appendChild(playerImage);
+   	        playerContainer.appendChild(playerCircle);
+   	        playerContainer.appendChild(playerName);
+   	        field.appendChild(playerContainer);
+   	    }  
+	});
     }
 
     getCardSize() {
