@@ -91,8 +91,8 @@ class FootballLineupCard extends HTMLElement {
                     background-color: rgba(255,255,255);
                     padding: 0px;
                     border-radius: 50%;
-    		    width: 3em; /* Diameter of the circle */
-    		    height: 3em; /* Diameter of the circle */
+    		    width: 6em; /* Diameter of the circle */
+    		    height: 6em; /* Diameter of the circle */
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
