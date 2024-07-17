@@ -96,6 +96,7 @@ class FootballLineupCard extends HTMLElement {
     		    border-radius: 50%; /* Ensures the shape is a circle */
     		    width: 4vw; /* Diameter of the circle */
     		    height: 4vw; /* Diameter of the circle */
+		    border-radius: 50%; /* Ensures the shape is a circle */
     		    display: flex;
    		    justify-content: center;
     		    align-items: center;
@@ -112,6 +113,7 @@ class FootballLineupCard extends HTMLElement {
                     margin-top: 1.5vw;
 		    font-weight: 580;
                     font-family: var(--montserrat-font), sans-serif;
+		    color: white; /* Color of the text */
                 }
             </style>
             <div class="card">
@@ -146,7 +148,7 @@ class FootballLineupCard extends HTMLElement {
   	        const playerContainer = document.createElement('div');
   	        playerContainer.className = 'player-container';
    	        playerContainer.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning and flip horizontally
-   	        playerContainer.style.bottom = `${((position.x / 5) * 100) - 5}%`;  // Adjust for appropriate positioning and move down
+   	        playerContainer.style.bottom = `${((position.x / 5) * 100) - 25}%`;  // Adjust for appropriate positioning and move down
 
    	        const playerCircle = document.createElement('div');
    	        playerCircle.className = 'player-circle';
