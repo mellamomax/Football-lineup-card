@@ -91,8 +91,8 @@ class FootballLineupCard extends HTMLElement {
                     background-color: rgba(255,255,255);
                     padding: 0px;
                     border-radius: 50%;
-    		    width: 6em; /* Diameter of the circle */
-    		    height: 6em; /* Diameter of the circle */
+    		    width: 6vw; /* Diameter of the circle */
+    		    height: 6vw; /* Diameter of the circle */
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -107,8 +107,8 @@ class FootballLineupCard extends HTMLElement {
                 .player div {
                     width: 100%;
                     text-align: center;
-                    font-size: 0.5em;
-                    margin-top: 0.2em;
+                    font-size: 1vw;
+                    margin-top: 0.2vw;
                     font-family: var(--montserrat-font), sans-serif;
                 }
             </style>
