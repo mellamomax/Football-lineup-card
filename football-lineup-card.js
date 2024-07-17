@@ -107,8 +107,8 @@ class FootballLineupCard extends HTMLElement {
                 .player div {
                     width: 100%;
                     text-align: center;
-                    font-size: 1vw;
-                    margin-top: 0.5vw;
+                    font-size: 1.2vw;
+                    margin-top: 1vw;
                     font-family: var(--montserrat-font), sans-serif;
                 }
             </style>
