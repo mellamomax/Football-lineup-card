@@ -72,11 +72,6 @@ class FootballLineupCard extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
-                .card {
-                    padding: 16px;
-                    font-size: 20px;
-                    position: relative;
-                }
                 .field {
                     background: url('/local/football-pitch-template.png') no-repeat center center;
                     background-size: contain;
@@ -91,12 +86,10 @@ class FootballLineupCard extends HTMLElement {
 		}
 
                 .player-circle {
-                    position: relative;
                     background-color: rgba(255,255,255);
     		    border-radius: 50%; /* Ensures the shape is a circle */
     		    width: 4vw; /* Diameter of the circle */
     		    height: 4vw; /* Diameter of the circle */
-		    border-radius: 50%; /* Ensures the shape is a circle */
     		    display: flex;
    		    justify-content: center;
     		    align-items: center;
