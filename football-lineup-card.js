@@ -83,6 +83,7 @@ class FootballLineupCard extends HTMLElement {
  		    position: absolute;
    		    transform: translate(-50%, -50%); /* Center the container */
   		    text-align: center;
+		    border-radius: 50%; /* Ensures the shape is a circle */
 		}
 
                 .player-circle {
