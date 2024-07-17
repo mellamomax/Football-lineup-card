@@ -78,7 +78,7 @@ class FootballLineupCard extends HTMLElement {
                     position: relative;
                 }
                 .field {
-                    background: url('/local/football-pitch-template.jpg') no-repeat center center;
+                    background: url('/local/football-pitch-template.svg') no-repeat center center;
                     background-size: contain;
                     width: 100%;
    		    padding-top: 66.66%; /* Aspect ratio 3:2 */
