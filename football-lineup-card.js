@@ -94,7 +94,7 @@ class FootballLineupCard extends HTMLElement {
    		    justify-content: center;
     		    align-items: center;
 		}
-                .img {
+                img {
                     border-radius: 50%;
                     width: 100%;
                     height: 100%;
@@ -102,7 +102,7 @@ class FootballLineupCard extends HTMLElement {
                 .player-name {
                     text-align: center;
                     font-size: 1.2vw;
-                    margin-top: 0vw;
+                    margin-top: 1.2vw;
 		    font-weight: 580;
                     font-family: monospace;
 		    color: white; /* Color of the text */
