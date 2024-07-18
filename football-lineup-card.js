@@ -123,7 +123,7 @@ class FootballLineupCard extends HTMLElement {
         }
         const attributes = entity.attributes;
         const formationType = attributes.formation;
-        const startingXI = attributes["starting XI"];
+        const startingXI = JSON.parse(attributes.starting_XI);
 
         const formationGrid = FORMATIONS[formationType];
         if (!formationGrid) {
@@ -134,32 +134,32 @@ class FootballLineupCard extends HTMLElement {
         const field = this.shadowRoot.querySelector('.field');
         field.innerHTML = '';
 
-	startingXI.forEach((playerInfo, index) => {
- 	    const player = playerInfo.player;
- 	    const position = formationGrid[index];
- 	    if (position) {
-  	        const playerContainer = document.createElement('div');
-  	        playerContainer.className = 'player-container';
-   	        playerContainer.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning and flip horizontally
-   	        playerContainer.style.bottom = `${((position.x / 5) * 100) - 25}%`;  // Adjust for appropriate positioning and move down
+        startingXI.forEach((playerInfo, index) => {
+            const player = playerInfo.player;
+            const position = formationGrid[index];
+            if (position) {
+                const playerContainer = document.createElement('div');
+                playerContainer.className = 'player-container';
+                playerContainer.style.left = `${((5 - position.y) / 5) * 100}%`; // Adjust for appropriate positioning and flip horizontally
+                playerContainer.style.bottom = `${((position.x / 5) * 100) - 25}%`;  // Adjust for appropriate positioning and move down
 
-   	        const playerCircle = document.createElement('div');
-   	        playerCircle.className = 'player-circle';
+                const playerCircle = document.createElement('div');
+                playerCircle.className = 'player-circle';
 
-    	        const playerImage = document.createElement('img');
-   	        playerImage.src = `https://media.api-sports.io/football/players/${player.id}.png`;
-    	        playerImage.alt = player.name.split(' ').slice(-1)[0];
+                const playerImage = document.createElement('img');
+                playerImage.src = `https://media.api-sports.io/football/players/${player.id}.png`;
+                playerImage.alt = player.name.split(' ').slice(-1)[0];
 
-    	        const playerName = document.createElement('div');
-    	        playerName.className = 'player-name';
-    	        playerName.textContent = player.name.split(' ').slice(-1)[0];
+                const playerName = document.createElement('div');
+                playerName.className = 'player-name';
+                playerName.textContent = player.name.split(' ').slice(-1)[0];
 
-   	        playerCircle.appendChild(playerImage);
-   	        playerContainer.appendChild(playerCircle);
-   	        playerContainer.appendChild(playerName);
-   	        field.appendChild(playerContainer);
-   	    }  
-	});
+                playerCircle.appendChild(playerImage);
+                playerContainer.appendChild(playerCircle);
+                playerContainer.appendChild(playerName);
+                field.appendChild(playerContainer);
+            }
+        });
     }
 
     getCardSize() {
