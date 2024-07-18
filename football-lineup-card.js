@@ -72,6 +72,11 @@ class FootballLineupCard extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
+		@font-face {
+ 		    font-family: 'Tolyer';
+ 		    src: url('/local/fonts/Tolyer Regular no.1.ttf') format('truetype');
+		}
+
                 .field {
                     background: url('/local/football-pitch-template.png') no-repeat center center;
                     background-size: cover;
@@ -83,7 +88,6 @@ class FootballLineupCard extends HTMLElement {
  		    position: absolute;
    		    transform: translate(-50%, -50%); /* Center the container */
   		    text-align: center;
-   		    margin-bottom: 2.5vw;
 		    width: 3vw;
 		}
 
