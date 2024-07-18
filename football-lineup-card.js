@@ -95,15 +95,16 @@ class FootballLineupCard extends HTMLElement {
                 .player-circle {
                     background-color: rgba(255,255,255);
     		    border-radius: 50% !important; /* Ensures the shape is a circle */
-    		    #width: 2vw; /* Diameter of the circle */
-    		    #height: 2vw; /* Diameter of the circle */
+    		    width: 5vw; /* Diameter of the circle */
+    		    height: 5vw; /* Diameter of the circle */
     		    display: flex;
    		    justify-content: center;
     		    align-items: center;
 		}
                 img {
                     border-radius: 50%;
-                    #width: 180%;
+                    width: 6vw;
+		    height: 6vw;
                     #height: 180%;
                 }
                 .player-name {
@@ -112,7 +113,7 @@ class FootballLineupCard extends HTMLElement {
 		    position: relative;
                     top: 0.3vw;
 		    font-weight: 580;
-                    font-family: monospace;
+                    font-family: Tolyer;
 		    color: white; /* Color of the text */
                 }
             </style>
