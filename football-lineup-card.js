@@ -88,22 +88,23 @@ class FootballLineupCard extends HTMLElement {
  		    position: absolute;
    		    transform: translate(-50%, -50%); /* Center the container */
   		    text-align: center;
-		    width: 3vw;
+		    #width: 2vw;
+		    #height: 2vw;
 		}
 
                 .player-circle {
                     background-color: rgba(255,255,255);
     		    border-radius: 50% !important; /* Ensures the shape is a circle */
-    		    #width: 5em; /* Diameter of the circle */
-    		    #height: 5em; /* Diameter of the circle */
+    		    #width: 2vw; /* Diameter of the circle */
+    		    #height: 2vw; /* Diameter of the circle */
     		    display: flex;
    		    justify-content: center;
     		    align-items: center;
 		}
                 img {
                     border-radius: 50%;
-                    width: 180%;
-                    height: 180%;
+                    #width: 180%;
+                    #height: 180%;
                 }
                 .player-name {
                     text-align: center;
