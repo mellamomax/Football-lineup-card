@@ -100,12 +100,11 @@ class FootballLineupCard extends HTMLElement {
                     height: 100%;
                 }
                 .player-name {
-                    width: 100%;
                     text-align: center;
                     font-size: 1.2vw;
-                    margin-top: 1.5vw;
+                    margin-top: 0vw;
 		    font-weight: 580;
-                    font-family: var(--montserrat-font), sans-serif;
+                    font-family: monospace;
 		    color: white; /* Color of the text */
                 }
             </style>
