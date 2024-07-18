@@ -83,6 +83,7 @@ class FootballLineupCard extends HTMLElement {
  		    position: absolute;
    		    transform: translate(-50%, -50%); /* Center the container */
   		    text-align: center;
+   		    margin-bottom: 2.5vw;
 		}
 
                 .player-circle {
@@ -96,13 +97,13 @@ class FootballLineupCard extends HTMLElement {
 		}
                 img {
                     border-radius: 50%;
-                    width: 100%;
-                    height: 100%;
+                    width: 180%;
+                    height: 180%;
                 }
                 .player-name {
                     text-align: center;
                     font-size: 1.2vw;
-                    margin-top: 1.2vw;
+                    top: 2vw;
 		    font-weight: 580;
                     font-family: monospace;
 		    color: white; /* Color of the text */
