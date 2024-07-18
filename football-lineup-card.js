@@ -69,50 +69,57 @@ const FORMATIONS = {
 class FootballLineupCard extends HTMLElement {
     setConfig(config) {
         this.config = config;
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-            <style>
-                .field {
-                    background: url('/local/football-pitch-template.png') no-repeat center center;
-                    background-size: contain;
-                    width: 100%;
-   		    padding-top: 66.66%; /* Aspect ratio 3:2 */
-                    position: relative;
-                }
-		.player-container {
- 		    position: absolute;
-   		    transform: translate(-50%, -50%); /* Center the container */
-  		    text-align: center;
-		}
-
-                .player-circle {
-                    background-color: rgba(255,255,255);
-    		    border-radius: 50%; /* Ensures the shape is a circle */
-    		    width: 5em; /* Diameter of the circle */
-    		    height: 5em; /* Diameter of the circle */
-    		    display: flex;
-   		    justify-content: center;
-    		    align-items: center;
-		}
-                .player img {
-                    border-radius: 50%;
-                    width: 100%;
-                    height: 100%;
-                }
-                .player-name {
-                    width: 100%;
-                    text-align: center;
-                    font-size: 1.2vw;
-                    margin-top: 1.5vw;
-		    font-weight: 580;
-                    font-family: var(--montserrat-font), sans-serif;
-		    color: white; /* Color of the text */
-                }
-            </style>
-            <div class="card">
-                <div class="field"></div>
-            </div>
-        `;
+        this.debugMode = config.debug || false;
+        if (!this.shadowRoot) {
+            this.attachShadow({ mode: 'open' });
+            this.shadowRoot.innerHTML = `
+                <style>
+                    .card {
+                        padding: 16px;
+                        font-size: 20px;
+                        position: relative;
+                    }
+                    .field {
+                        background: url('/local/football-pitch-template.png') no-repeat center center;
+                        background-size: contain;
+                        width: 100%;
+                        padding-top: 66.66%; /* Aspect ratio 3:2 */
+                        position: relative;
+                    }
+                    .player-container {
+                        position: absolute;
+                        transform: translate(-50%, -50%); /* Center the container */
+                        text-align: center;
+                    }
+                    .player-circle {
+                        background-color: rgba(255, 255, 255); /* Background color of the circle */
+                        border-radius: 50%; /* Ensures the shape is a circle */
+                        width: 4em; /* Diameter of the circle */
+                        height: 4em; /* Diameter of the circle */
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .player img {
+                        border-radius: 50%;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .player-name {
+                        width: 100%;
+                        text-align: center;
+                        font-size: 1.2vw;
+                        margin-top: 0.5vw; /* Move text down */
+                        font-weight: 580;
+                        font-family: var(--montserrat-font), sans-serif;
+                        color: white; /* Color of the text */
+                    }
+                </style>
+                <div class="card">
+                    <div class="field"></div>
+                </div>
+            `;
+        }
     }
 
     set hass(hass) {
