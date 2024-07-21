@@ -72,17 +72,19 @@ class FootballLineupCard extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
-		@font-face {
- 		    font-family: 'Tolyer';
- 		    src: url('/local/fonts/Tolyer.ttf') format('truetype');
-		}
-
                 .field {
                     background: url('/local/football-pitch-template.png') no-repeat center center;
                     background-size: cover;
                     width: 100%;
    		    padding-top: 66.66%; /* Aspect ratio 3:2 */
                     position: relative;
+                }
+                .players {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
                 }
 		.player-container {
  		    position: absolute;
@@ -123,6 +125,7 @@ class FootballLineupCard extends HTMLElement {
             </style>
             <div class="card">
                 <div class="field"></div>
+                <div class="players"></div>
             </div>
         `;
     }
@@ -144,7 +147,8 @@ class FootballLineupCard extends HTMLElement {
         }
 
         const field = this.shadowRoot.querySelector('.field');
-        field.innerHTML = '';
+        const players = this.shadowRoot.querySelector('.players');
+        players.innerHTML = '';
 
         startingXI.forEach((playerInfo, index) => {
             const player = playerInfo.player;
