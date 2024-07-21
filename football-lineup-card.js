@@ -74,7 +74,7 @@ class FootballLineupCard extends HTMLElement {
             <style>
 		@font-face {
  		    font-family: 'Tolyer';
- 		    src: url('/local/fonts/Tolyer Regular no.1.ttf') format('truetype');
+ 		    src: url('/local/fonts/Tolyer.ttf') format('truetype');
 		}
 
                 .field {
