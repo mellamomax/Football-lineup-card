@@ -91,7 +91,6 @@ class FootballLineupCard extends HTMLElement {
 		    #width: 2vw;
 		    #height: 2vw;
 		}
-
                 .player-circle {
                     background-color: rgba(255,255,255);
     		    border-radius: 50% !important; /* Ensures the shape is a circle */
@@ -101,17 +100,19 @@ class FootballLineupCard extends HTMLElement {
    		    justify-content: center;
     		    align-items: center;
 		}
-                img {
+                .player-circle img {
                     border-radius: 50%;
                     width: 6vw;
 		    height: 6vw;
                     #height: 180%;
+	  	    object-fit: cover;
+                    object-position: top;
                 }
                 .player-name {
                     text-align: center;
                     font-size: 1.2vw;
 		    position: relative;
-                    top: 0.3vw;
+                    top: 0.7vw;
 		    font-weight: 580;
                     font-family: Tolyer;
 		    color: white; /* Color of the text */
