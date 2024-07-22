@@ -124,8 +124,9 @@ class FootballLineupCard extends HTMLElement {
                 }
             </style>
             <div class="card">
-                <div class="field"></div>
-                <div class="players"></div>
+                <div class="field">
+                    <div class="players"></div>
+                </div>
             </div>
         `;
     }
