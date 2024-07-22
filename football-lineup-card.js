@@ -69,16 +69,14 @@ const FORMATIONS = {
 class FootballLineupCard extends HTMLElement {
     setConfig(config) {
         this.config = config;
-        if (!this.shadowRoot) {
-            this.attachShadow({ mode: 'open' });
-        }
+        this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
                 .field {
                     background: url('/local/football-pitch-template.png') no-repeat center center;
                     background-size: cover;
                     width: 100%;
-                    padding-top: 66.66%; /* Aspect ratio 3:2 */
+   		    padding-top: 66.66%; /* Aspect ratio 3:2 */
                     position: relative;
                 }
                 .players {
@@ -88,45 +86,46 @@ class FootballLineupCard extends HTMLElement {
                     width: 100%;
                     height: 100%;
                 }
-                .player-container {
-                    position: absolute;
-                    transform: translate(-50%, -50%); /* Center the container */
-                    text-align: center;
-                }
+		.player-container {
+ 		    position: absolute;
+   		    transform: translate(-50%, -50%); /* Center the container */
+  		    text-align: center;
+		    #width: 2vw;
+		    #height: 2vw;
+		}
                 .player-circle {
-                    background-color: rgba(255,255,255,0.8);
-                    border-radius: 50% !important; /* Ensures the shape is a circle */
-                    width: 2.2vw; /* Diameter of the circle */
-                    height: 2.2vw; /* Diameter of the circle */
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                }
+                    background-color: rgba(255,255,255);
+    		    border-radius: 50% !important; /* Ensures the shape is a circle */
+    		    width: 6vw; /* Diameter of the circle */
+    		    height: 6vw; /* Diameter of the circle */
+    		    display: flex;
+   		    justify-content: center;
+    		    align-items: center;
+		    position: relative;
+		}
                 .player-circle img {
                     border-radius: 50%;
-                    width: 2vw;
-                    height: 2vw;
-                    object-fit: cover;
+                    width: 5vw;
+		    height: 5vw;
+                    #height: 180%;
+	  	    object-fit: cover;
                     object-position: top;
-                    position: absolute;
-                    z-index: 1; /* Ensure the image is on top */
+		    position: absolute;
+		    z-index: 1; /* Ensure the image is on top */
                 }
                 .player-name {
                     text-align: center;
-		    display: flex;
                     font-size: 1.2vw;
-                    position: relative;
-                    top: 0.4vw;
-                    font-weight: 580;
+		    position: relative;
+                    top: 0.7vw;
+		    font-weight: 580;
                     font-family: Tolyer;
-                    color: white; /* Color of the text */
+		    color: white; /* Color of the text */
                 }
             </style>
             <div class="card">
-                <div class="field">
-                    <div class="players"></div>
-                </div>
+                <div class="field"></div>
+                <div class="players"></div>
             </div>
         `;
     }
@@ -147,6 +146,7 @@ class FootballLineupCard extends HTMLElement {
             return;
         }
 
+        const field = this.shadowRoot.querySelector('.field');
         const players = this.shadowRoot.querySelector('.players');
         players.innerHTML = '';
 
@@ -173,7 +173,7 @@ class FootballLineupCard extends HTMLElement {
                 playerCircle.appendChild(playerImage);
                 playerContainer.appendChild(playerCircle);
                 playerContainer.appendChild(playerName);
-                players.appendChild(playerContainer);
+                field.appendChild(playerContainer);
             }
         });
     }
