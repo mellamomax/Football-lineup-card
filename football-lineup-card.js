@@ -73,7 +73,7 @@ class FootballLineupCard extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 .field {
-                    background: url('/local/football-pitch-template.png') no-repeat center center;
+                    background: url('https://i.imgur.com/0SUPY7V.png') no-repeat center center;
                     background-size: cover;
                     width: 100%;
    		    padding-top: 66.66%; /* Aspect ratio 3:2 */
