@@ -161,7 +161,7 @@ class FootballLineupCard extends HTMLElement {
                 playerCircle.className = 'player-circle';
 
                 const playerImage = document.createElement('img');
-                playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.number}.png`;
+                playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png`;
                 playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
 
                 const playerName = document.createElement('div');
