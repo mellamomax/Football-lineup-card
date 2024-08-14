@@ -1,3 +1,73 @@
+const FORMATIONS = {
+    "4-3-3": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 1 }, { x: 4, y: 2.5 }, { x: 4, y: 4 }, // Forwards
+    ],
+    "4-4-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "4-2-3-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.8 }, { x: 3, y: 3.2 }, // Defensive Midfielders
+        { x: 4, y: 1 }, { x: 4, y: 2.5 }, { x: 4, y: 4 }, // Attacking Midfielders
+        { x: 5, y: 2.5 }, // Forward
+    ],
+    "3-4-3": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1.5 }, { x: 2, y: 2.5 }, { x: 2, y: 3.5 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 1.5 }, { x: 4, y: 2.5 }, { x: 4, y: 3.5 }, // Forwards
+    ],
+    "3-5-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1.5 }, { x: 2, y: 2.5 }, { x: 2, y: 3.5 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 2.5 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "5-3-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 2.5 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 2 }, { x: 4, y: 3 }, // Forwards
+    ],
+    "4-1-4-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 2.5 }, // Defensive Midfielder
+        { x: 4, y: 1 }, { x: 4, y: 1.5 }, { x: 4, y: 3.5 }, { x: 4, y: 4 }, // Midfielders
+        { x: 5, y: 2.5 }, // Forward
+    ],
+    "4-5-1": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 2.5 }, { x: 3, y: 3 }, { x: 3, y: 4 }, // Midfielders
+        { x: 4, y: 2.5 }, // Forward
+    ],
+    "4-3-1-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 1.5 }, { x: 3, y: 2.5 }, { x: 3, y: 3.5 }, // Midfielders
+        { x: 4, y: 2.5 }, // Attacking Midfielder
+        { x: 5, y: 2 }, { x: 5, y: 3 }, // Forwards
+    ],
+    "4-1-2-1-2": [
+        { x: 1, y: 2.5 }, // Goalkeeper
+        { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 2, y: 4 }, // Defenders
+        { x: 3, y: 2.5 }, // Defensive Midfielder
+        { x: 4, y: 1.5 }, { x: 4, y: 3.5 }, // Midfielders
+        { x: 5, y: 2.5 }, // Attacking Midfielder
+        { x: 6, y: 2 }, { x: 6, y: 3 }, // Forwards
+    ]
+};
+
+
+
 class FootballLineupCard extends HTMLElement {
     setConfig(config) {
         this.config = config;
@@ -8,7 +78,7 @@ class FootballLineupCard extends HTMLElement {
                     background: url('https://i.imgur.com/0SUPY7V.png') no-repeat center center;
                     background-size: cover;
                     width: 100%;
-                    padding-top: 66.66%; /* Aspect ratio 3:2 */
+                    padding-top: 85%;
                     position: relative;
                 }
                 .players {
@@ -26,8 +96,8 @@ class FootballLineupCard extends HTMLElement {
                 .player-circle {
                     background-color: rgba(255,255,255);
                     border-radius: 50% !important; /* Ensures the shape is a circle */
-                    width: 6vw; /* Diameter of the circle */
-                    height: 6vw; /* Diameter of the circle */
+                    width: 4vw; /* Diameter of the circle */
+                    height: 4vw; /* Diameter of the circle */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -35,8 +105,8 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player-circle img {
                     border-radius: 50%;
-                    width: 5vw;
-                    height: 5vw;
+                    width: 3vw;
+                    height: 3vw;
                     object-fit: cover;
                     object-position: top;
                     position: absolute;
@@ -66,37 +136,43 @@ class FootballLineupCard extends HTMLElement {
             return;
         }
         const attributes = entity.attributes;
+        const formationType = attributes.formation;
         const startingXI = attributes['starting XI'];
+
+        const formation = FORMATIONS[formationType];
+        if (!formation) {
+            this.shadowRoot.querySelector('.card').innerHTML = 'Formation not supported';
+            return;
+        }
 
         const field = this.shadowRoot.querySelector('.field');
         const players = this.shadowRoot.querySelector('.players');
         players.innerHTML = '';
 
-        startingXI.forEach(playerInfo => {
-            const position = playerInfo.grid.split(':'); // Get the grid position from the API
-            const gridX = parseInt(position[0]);
-            const gridY = parseInt(position[1]);
+        startingXI.forEach((playerInfo, index) => {
+            const position = formation[index];
+            if (position) {
+                const playerContainer = document.createElement('div');
+                playerContainer.className = 'player-container';
+                playerContainer.style.left = `${(position.y / 4) * 100}%`;
+                playerContainer.style.top = `${(5 - position.x) / 5 * 100}%`;  // Invert the x axis
 
-            const playerContainer = document.createElement('div');
-            playerContainer.className = 'player-container';
-            playerContainer.style.left = `${(gridY / 4) * 100}%`; // Adjust for appropriate positioning
-            playerContainer.style.top = `${(gridX / 4) * 100}%`;  // Adjust for appropriate positioning
+                const playerCircle = document.createElement('div');
+                playerCircle.className = 'player-circle';
 
-            const playerCircle = document.createElement('div');
-            playerCircle.className = 'player-circle';
+                const playerImage = document.createElement('img');
+                playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.number}.png`;
+                playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
 
-            const playerImage = document.createElement('img');
-            playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.number}.png`;
-            playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
+                const playerName = document.createElement('div');
+                playerName.className = 'player-name';
+                playerName.textContent = playerInfo.name.split(' ').slice(-1)[0];
 
-            const playerName = document.createElement('div');
-            playerName.className = 'player-name';
-            playerName.textContent = playerInfo.name.split(' ').slice(-1)[0];
-
-            playerCircle.appendChild(playerImage);
-            playerContainer.appendChild(playerCircle);
-            playerContainer.appendChild(playerName);
-            players.appendChild(playerContainer);
+                playerCircle.appendChild(playerImage);
+                playerContainer.appendChild(playerCircle);
+                playerContainer.appendChild(playerName);
+                players.appendChild(playerContainer);
+            }
         });
     }
 
