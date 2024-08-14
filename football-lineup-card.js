@@ -79,8 +79,8 @@ class FootballLineupCard extends HTMLElement {
 
             const playerContainer = document.createElement('div');
             playerContainer.className = 'player-container';
-            playerContainer.style.left = `${((5 - gridY) / 5) * 100}%`; // Adjust for appropriate positioning and flip horizontally
-            playerContainer.style.bottom = `${((gridX / 5) * 100) - 25}%`;  // Adjust for appropriate positioning and move down
+            playerContainer.style.left = `${(gridY / 4) * 100}%`; // Adjust for appropriate positioning
+            playerContainer.style.top = `${(gridX / 4) * 100}%`;  // Adjust for appropriate positioning
 
             const playerCircle = document.createElement('div');
             playerCircle.className = 'player-circle';
