@@ -83,9 +83,9 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .players {
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
+                    top: 5%;
+                    left: 1%;
+                    width: 50%;
                     height: 100%;
                 }
                 .player-container {
