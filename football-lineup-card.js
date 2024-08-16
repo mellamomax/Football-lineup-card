@@ -120,6 +120,7 @@ class FootballLineupCard extends HTMLElement {
                     font-weight: 580;
                     font-family: Tolyer;
                     color: white; /* Color of the text */
+		    width: 4vw;
                 }
             </style>
             <div class="card">
