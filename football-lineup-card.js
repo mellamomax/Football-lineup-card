@@ -154,7 +154,7 @@ class FootballLineupCard extends HTMLElement {
             if (position) {
                 const playerContainer = document.createElement('div');
                 playerContainer.className = 'player-container';
-                playerContainer.style.left = `${(position.y / 4) * 100}%`;
+                playerContainer.style.left = `${((4 - position.y) / 4) * 100}%`;
                 playerContainer.style.top = `${(5 - position.x) / 5 * 100}%`;  // Invert the x axis
 
                 const playerCircle = document.createElement('div');
