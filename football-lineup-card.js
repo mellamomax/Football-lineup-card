@@ -83,7 +83,7 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .players {
                     position: absolute;
-                    top: 0%;
+                    top: -20%;
                     left: 11%;
                     width: 50%;
                     height: 60%;
@@ -96,8 +96,8 @@ class FootballLineupCard extends HTMLElement {
                 .player-circle {
                     background-color: rgba(255,255,255);
                     border-radius: 50% !important; /* Ensures the shape is a circle */
-                    width: 5vw; /* Diameter of the circle */
-                    height: 5vw; /* Diameter of the circle */
+                    width: 6vw; /* Diameter of the circle */
+                    height: 6vw; /* Diameter of the circle */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -105,8 +105,8 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player-circle img {
                     border-radius: 50%;
-                    width: 4vw;
-                    height: 4vw;
+                    width: 5vw;
+                    height: 5vw;
                     object-fit: cover;
                     object-position: top;
                     position: absolute;
