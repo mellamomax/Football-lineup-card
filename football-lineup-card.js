@@ -74,6 +74,10 @@ class FootballLineupCard extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
+				.card {
+					overflow: hidden;
+					position: relative;
+				} 
                 .field {
                     background: url('https://i.imgur.com/0SUPY7V.png') no-repeat center center;
                     background-size: cover;
@@ -84,20 +88,20 @@ class FootballLineupCard extends HTMLElement {
                 .players {
                     position: absolute;
                     top: 0%;
-                    left: 11%;
-                    width: 50%;
-                    height: 65%;
+                    #left: 11%;
+                    width: 100%;
+                    height: 100%;
                 }
                 .player-container {
                     position: absolute;
-                    transform: translate(-50%, -50%); /* Center the container */
+                    #transform: translate(-50%, -50%); /* Center the container */
                     text-align: center;
                 }
                 .player-circle {
                     background-color: rgba(255,255,255);
                     border-radius: 50% !important; /* Ensures the shape is a circle */
-                    width: 15%; /* Diameter of the circle */
-                    height: 15%; /* Diameter of the circle */
+                    width: 50%; /* Diameter of the circle */
+                    height: 50%; /* Diameter of the circle */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -105,11 +109,11 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player-circle img {
                     border-radius: 50%;
-                    width: 85%;
-                    height: 85%;
+                    #width: 85%;
+                    #height: 85%;
                     object-fit: cover;
                     object-position: top;
-                    position: absolute;
+                    #position: absolute;
                     z-index: 1; /* Ensure the image is on top */
                 }
                 .player-name {
@@ -120,7 +124,7 @@ class FootballLineupCard extends HTMLElement {
                     font-weight: 580;
                     font-family: Tolyer;
                     color: white; /* Color of the text */
-		    width: 4vw;
+					width: 4vw;
                 }
             </style>
             <div class="card">
