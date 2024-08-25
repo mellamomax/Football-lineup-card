@@ -96,8 +96,8 @@ class FootballLineupCard extends HTMLElement {
                 .player-circle {
                     background-color: rgba(255,255,255);
                     border-radius: 50% !important; /* Ensures the shape is a circle */
-                    width: 6vw; /* Diameter of the circle */
-                    height: 6vw; /* Diameter of the circle */
+                    width: 15%; /* Diameter of the circle */
+                    height: 15%; /* Diameter of the circle */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -105,8 +105,8 @@ class FootballLineupCard extends HTMLElement {
                 }
                 .player-circle img {
                     border-radius: 50%;
-                    width: 5vw;
-                    height: 5vw;
+                    width: 85%;
+                    height: 85%;
                     object-fit: cover;
                     object-position: top;
                     position: absolute;
@@ -150,32 +150,41 @@ class FootballLineupCard extends HTMLElement {
         const players = this.shadowRoot.querySelector('.players');
         players.innerHTML = '';
 
+		// Get actual width and height of the players container
+		const containerWidth = players.offsetWidth;
+		const containerHeight = players.offsetHeight;
+
         startingXI.forEach((playerInfo, index) => {
             const position = formation[index];
             if (position) {
                 const playerContainer = document.createElement('div');
                 playerContainer.className = 'player-container';
-                playerContainer.style.left = `${((4 - position.y) / 4) * 100}%`;
-                playerContainer.style.top = `${(5 - position.x) / 5 * 100}%`;  // Invert the x axis
+				
+				// Calculate dynamic left and top positions based on container size
+				const leftPos = ((position.y - 1) / 4) * containerWidth;
+				const topPos = ((position.x - 1) / 5) * containerHeight;
+				
+                playerContainer.style.left = `${leftPos}px`;
+				playerContainer.style.top = `${topPos}px`;
 
-                const playerCircle = document.createElement('div');
-                playerCircle.className = 'player-circle';
+				const playerCircle = document.createElement('div');
+				playerCircle.className = 'player-circle';
 
-                const playerImage = document.createElement('img');
-                playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png`;
-                playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
+				const playerImage = document.createElement('img');
+				playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png`;
+				playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
 
-                const playerName = document.createElement('div');
-                playerName.className = 'player-name';
-                playerName.textContent = playerInfo.name.split(' ').slice(-1)[0];
+				const playerName = document.createElement('div');
+				playerName.className = 'player-name';
+				playerName.textContent = playerInfo.name.split(' ').slice(-1)[0];
 
-                playerCircle.appendChild(playerImage);
-                playerContainer.appendChild(playerCircle);
-                playerContainer.appendChild(playerName);
-                players.appendChild(playerContainer);
-            }
-        });
-    }
+				playerCircle.appendChild(playerImage);
+				playerContainer.appendChild(playerCircle);
+				playerContainer.appendChild(playerName);
+				players.appendChild(playerContainer);
+			}
+		});
+	}
 
     getCardSize() {
         return 3;
