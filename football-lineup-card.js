@@ -85,6 +85,18 @@ class FootballLineupCard extends HTMLElement {
                     padding-top: 85%;
                     position: relative;
                 }
+				.teams {
+					display: flex;
+					justify-content: space-between;
+					width: 100%;
+					padding: 0 1em;
+					position: absolute;
+					top: 0;
+					font-size: 1.2vw;
+					font-weight: bold;
+					color: white;
+					z-index: 1; /* Make sure it's on top of the field */
+				}
                 .players {
                     position: absolute;
                     top: 0%;
@@ -129,6 +141,10 @@ class FootballLineupCard extends HTMLElement {
             </style>
             <div class="card">
                 <div class="field"></div>
+				<div class="teams">
+					<div class="home-team"></div>
+					<div class="away-team"></div>
+				</div>
                 <div class="players"></div>
             </div>
         `;
@@ -143,6 +159,13 @@ class FootballLineupCard extends HTMLElement {
         const attributes = entity.attributes;
         const formationType = attributes.formation;
         const startingXI = attributes['starting XI'];
+
+		// Set the home and away team names
+		const homeTeam = attributes.home_team;
+		const awayTeam = attributes.away_team;
+
+		this.shadowRoot.querySelector('.home-team').textContent = homeTeam;
+		this.shadowRoot.querySelector('.away-team').textContent = awayTeam;
 
         const formation = FORMATIONS[formationType];
         if (!formation) {
