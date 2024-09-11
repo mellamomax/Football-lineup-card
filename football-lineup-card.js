@@ -150,48 +150,53 @@ class FootballLineupCard extends HTMLElement {
         `;
     }
 
-    set hass(hass) {
-        const entity = hass.states[this.config.entity];
-        if (!entity) {
-            this.shadowRoot.querySelector('.card').innerHTML = 'Entity not found';
-            return;
-        }
-        const attributes = entity.attributes;
-        const formationType = attributes.formation;
-        const startingXI = attributes['starting XI'];
+	set hass(hass) {
+		const entity = hass.states[this.config.entity];
+		if (!entity) {
+			this.shadowRoot.querySelector('.card').innerHTML = 'Entity not found';
+			return;
+		}
+		const attributes = entity.attributes;
 
-		// Set the home and away team names
-		const homeTeam = attributes.home_team;
-		const awayTeam = attributes.away_team;
+		// Access the home team's lineup data
+		const homeTeamLineup = attributes.home_team_lineup;
 
-		this.shadowRoot.querySelector('.home-team').textContent = homeTeam;
-		this.shadowRoot.querySelector('.away-team').textContent = awayTeam;
+		// Ensure the home team lineup exists
+		if (!homeTeamLineup) {
+			this.shadowRoot.querySelector('.card').innerHTML = 'Home team lineup not available';
+			return;
+		}
 
-        const formation = FORMATIONS[formationType];
-        if (!formation) {
-            this.shadowRoot.querySelector('.card').innerHTML = 'Formation not supported';
-            return;
-        }
+		// Get the home team's formation and starting XI
+		const formationType = homeTeamLineup.formation;
+		const startingXI = homeTeamLineup['starting XI'];
 
-        const field = this.shadowRoot.querySelector('.field');
-        const players = this.shadowRoot.querySelector('.players');
-        players.innerHTML = '';
+		// Retrieve the formation from the FORMATIONS object
+		const formation = FORMATIONS[formationType];
+		if (!formation) {
+			this.shadowRoot.querySelector('.card').innerHTML = `Formation "${formationType}" is not supported`;
+			return;
+		}
+
+		const players = this.shadowRoot.querySelector('.players');
+		players.innerHTML = '';  // Clear previous players
 
 		// Get actual width and height of the players container
 		const containerWidth = players.offsetWidth;
 		const containerHeight = players.offsetHeight;
 
-        startingXI.forEach((playerInfo, index) => {
-            const position = formation[index];
-            if (position) {
-                const playerContainer = document.createElement('div');
-                playerContainer.className = 'player-container';
-				
+		// Iterate over the starting XI and render them based on the formation
+		startingXI.forEach((playerInfo, index) => {
+			const position = formation[index];
+			if (position) {
+				const playerContainer = document.createElement('div');
+				playerContainer.className = 'player-container';
+
 				// Calculate dynamic left and top positions based on container size
 				const leftPos = ((position.y - 1) / 4) * containerWidth;
 				const topPos = ((position.x - 1) / 5) * containerHeight;
-				
-                playerContainer.style.left = `${leftPos}px`;
+
+				playerContainer.style.left = `${leftPos}px`;
 				playerContainer.style.top = `${topPos}px`;
 
 				const playerCircle = document.createElement('div');
