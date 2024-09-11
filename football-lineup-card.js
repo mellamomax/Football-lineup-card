@@ -160,18 +160,22 @@ class FootballLineupCard extends HTMLElement {
 
 		// Access the home team's lineup data
 		const homeTeamLineup = attributes.home_team_lineup;
+		const homeTeam = attributes.home_team;
+		const awayTeam = attributes.away_team;
 
-		// Ensure the home team lineup exists
 		if (!homeTeamLineup) {
 			this.shadowRoot.querySelector('.card').innerHTML = 'Home team lineup not available';
 			return;
 		}
 
+		// Display the home and away team names
+		this.shadowRoot.querySelector('.home-team').textContent = homeTeam;
+		this.shadowRoot.querySelector('.away-team').textContent = awayTeam;
+
 		// Get the home team's formation and starting XI
 		const formationType = homeTeamLineup.formation;
 		const startingXI = homeTeamLineup['starting XI'];
 
-		// Retrieve the formation from the FORMATIONS object
 		const formation = FORMATIONS[formationType];
 		if (!formation) {
 			this.shadowRoot.querySelector('.card').innerHTML = `Formation "${formationType}" is not supported`;
@@ -203,7 +207,8 @@ class FootballLineupCard extends HTMLElement {
 				playerCircle.className = 'player-circle';
 
 				const playerImage = document.createElement('img');
-				playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png`;
+				// Add fallback for player image if missing
+				playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png` || 'fallback-image-url.png';
 				playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
 
 				const playerName = document.createElement('div');
