@@ -99,8 +99,8 @@ class FootballLineupCard extends HTMLElement {
 				}
                 .players {
                     position: absolute;
-                    top: 10%;
-                    #left: 11%;
+                    bottom: 5%;
+                    left: 8%;
                     width: 100%;
                     height: 100%;
                 }
@@ -108,6 +108,9 @@ class FootballLineupCard extends HTMLElement {
                     position: absolute;
                     #transform: translate(-50%, -50%); /* Center the container */
                     text-align: center;
+					align-items: center;
+					justify-content: center;
+					Display: flex;
                 }
                 .player-circle {
                     background-color: rgba(255,255,255);
@@ -132,7 +135,7 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     font-size: 1vw;
                     position: relative;
-                    top: 0.7vw;
+                    top: 2.5vw;
                     font-weight: 580;
                     font-family: Tolyer;
                     color: white; /* Color of the text */
