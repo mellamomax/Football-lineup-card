@@ -110,6 +110,7 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
 					align-items: center;
 					justify-content: center;
+					flex-direction: column;
 					Display: flex;
                 }
                 .player-circle {
@@ -199,19 +200,19 @@ class FootballLineupCard extends HTMLElement {
 				const playerContainer = document.createElement('div');
 				playerContainer.className = 'player-container';
 
-				// Calculate dynamic left and top positions based on container size
-				const leftPos = (position.y / 4) * containerWidth - (containerWidth / 8);
-				const topPos = ((5 - position.x) / 5) * containerHeight;
+				// Calculate dynamic left and top positions based on percentages
+				const leftPercentage = ((position.y - 1) / 3) * 100; // position.y from 1 to 4
+				const topPercentage = ((5 - position.x) / 5) * 100; // position.x from 1 to 5
 
-				playerContainer.style.left = `${leftPos}px`;
-				playerContainer.style.top = `${topPos}px`;
+				playerContainer.style.left = `${leftPercentage}%`;
+				playerContainer.style.top = `${topPercentage}%`;
+				playerContainer.style.transform = 'translate(-50%, -50%)'; // Center the container
 
 				const playerCircle = document.createElement('div');
 				playerCircle.className = 'player-circle';
 
 				const playerImage = document.createElement('img');
-				// Add fallback for player image if missing
-				playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png` || 'fallback-image-url.png';
+				playerImage.src = `https://media.api-sports.io/football/players/${playerInfo.ID}.png`;
 				playerImage.alt = playerInfo.name.split(' ').slice(-1)[0];
 
 				const playerName = document.createElement('div');
