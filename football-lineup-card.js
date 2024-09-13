@@ -88,10 +88,10 @@ class FootballLineupCard extends HTMLElement {
 				.teams {
 					display: flex;
 					justify-content: space-between;
-					width: 100%;
-					padding: 0 1em;
+					#width: 100%;
+					padding: 0 4em;
 					position: absolute;
-					top: 0;
+					top: 420px;
 					font-size: 1.2vw;
 					font-weight: bold;
 					color: white;
@@ -99,7 +99,7 @@ class FootballLineupCard extends HTMLElement {
 				}
                 .players {
                     position: absolute;
-                    top: 0%;
+                    top: 10%;
                     #left: 11%;
                     width: 100%;
                     height: 100%;
