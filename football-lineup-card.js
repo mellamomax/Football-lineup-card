@@ -99,8 +99,8 @@ class FootballLineupCard extends HTMLElement {
 				}
                 .players {
                     position: absolute;
-                    bottom: 5%;
-                    left: 8%;
+                    bottom: 0%;
+                    #left: 8%;
                     width: 100%;
                     height: 100%;
                 }
@@ -135,7 +135,7 @@ class FootballLineupCard extends HTMLElement {
                     text-align: center;
                     font-size: 1vw;
                     position: relative;
-                    top: 2.5vw;
+                    top: 1.5vw;
                     font-weight: 580;
                     font-family: Tolyer;
                     color: white; /* Color of the text */
