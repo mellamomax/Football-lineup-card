@@ -201,7 +201,7 @@ class FootballLineupCard extends HTMLElement {
 				playerContainer.className = 'player-container';
 
 				// Calculate dynamic left and top positions based on percentages
-				const leftPercentage = ((position.y - 1) / 3) * 100; // position.y from 1 to 4
+				const leftPercentage = ((position.y - 2) / 3) * 100; // position.y from 1 to 4
 				const topPercentage = ((5 - position.x) / 5) * 100; // position.x from 1 to 5
 
 				playerContainer.style.left = `${leftPercentage}%`;
