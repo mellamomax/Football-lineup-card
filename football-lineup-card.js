@@ -200,7 +200,7 @@ class FootballLineupCard extends HTMLElement {
 				playerContainer.className = 'player-container';
 
 				// Calculate dynamic left and top positions based on container size
-				const leftPos = ((position.y - 1) / 4) * (containerWidth - playerContainer.offsetWidth) + (containerWidth / 2 - playerContainer.offsetWidth / 2);
+				const leftPos = (position.y / 4) * containerWidth - (containerWidth / 8);
 				const topPos = ((5 - position.x) / 5) * containerHeight;
 
 				playerContainer.style.left = `${leftPos}px`;
